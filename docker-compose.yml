@@ -3,6 +3,8 @@ version: '3'
 volumes:
   learn-mydumper-mysql:
     name: learn-mydumper-mysql
+  learn-mydumper:
+    name: learn-mydumper
 
 networks:
   learn-mydumper:
@@ -21,3 +23,14 @@ services:
       - learn-mydumper-mysql:/var/lib/mysql/
     networks:
       - learn-mydumper
+
+  mydumper:
+    container_name: learn-mydumper
+    build: ./docker/
+    image: mydumper:0.12.5-3
+    volumes:
+      - learn-mydumper:/backup/
+    networks:
+      - learn-mydumper
+    entrypoint: "bash"
+    tty: true

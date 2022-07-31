@@ -35,12 +35,12 @@ Ao instalar o pacote são disponibilizado dois utilitários
 ## Exemplos (mydumper)
 1. Backup de um banco de dados
 ```
-mydumper -h 172.20.0.2 -u root -p mypass --database app01 --outputdir /backup/bkp_app01_$(date +%F_%H%M)
+mydumper -h learn-mydumper-mysql -u root -p mypass --database app01 --outputdir /backup/bkp_app01_$(date +%F_%H%M)
 ```
 
 2. Backup de dois banco de dados e com log em arquivo com maior verbose
 ```
-mydumper -h 172.20.0.2 -u root -p mypass --database app01,app02 --outputdir /backup/bkp_app01_app02_$(date +%F_%H%M) \
+mydumper -h learn-mydumper-mysql -u root -p mypass --database app01,app02 --outputdir /backup/bkp_app01_app02_$(date +%F_%H%M) \
 --logfile /var/log/backup-mydumper.log --verbose 3
 ```
 
@@ -48,7 +48,7 @@ mydumper -h 172.20.0.2 -u root -p mypass --database app01,app02 --outputdir /bac
 ```
 cat <<'EOF' > ~/.my.cnf
 [mydumper]
-    host=172.20.0.2
+    host=learn-mydumper-mysql
     user=root
     password=mypass
 EOF
@@ -77,7 +77,7 @@ cat /usr/bin/backup-mydumper.sh
 ## Exemplos (myloader)
 1. Restaurando backup completo
 ```
-myloader -h 172.20.0.2 -u root -p mypass --threads 4 --directory=/backup/mydumper-2022-07-31_2248/
+myloader -h learn-mydumper-mysql -u root -p mypass --threads 4 --directory=/backup/mydumper-2022-07-31_2248/
 ```
 
 ## Referência
